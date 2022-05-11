@@ -1,0 +1,25 @@
+{
+    "maj" : "2022-05-24 17:25",
+    "disponibilites" : [
+        {
+            "idAgence" : 10,
+            "nomAgence" : "Palavas",
+            "adresseAgence" : "rue des cocotiers",
+            "infoAgence" : "fermé le 14 juillet",
+            "disponibiliteAgence" : [2,5,7]
+        },
+        {
+            "idAgence" : 11,
+            "nomAgence" : "Carnon",
+            "adresseAgence" : "rue des palmiers",
+            "infoAgence" : "fête du kayak le 25/05/2022",
+            "disponibiliteAgence" : [0,2,10]
+        },        {
+            "idAgence" : 12,
+            "nomAgence" : "La Grande Motte",
+            "adresseAgence" : "rue des amandes",
+            "infoAgence" : "fête du kayak le 12/05/2022",
+            "disponibiliteAgence" : [5,52,1]
+        }
+    ]
+}
