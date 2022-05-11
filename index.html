@@ -615,7 +615,7 @@ section > h2 {
     <nav>
         <div class="nav-wrapper">        
             <img src="logo.png" alt="logo kayak34">
-            <div class="menu-wrapper">
+            <div class="menu-wrapper" id-"menu-main">
                 <ul class="menu">
                     <li><a href="">Réserver</a></li>
                     <li><a href="">Nous trouver</a></li>
@@ -785,5 +785,28 @@ section > h2 {
        </div>
    </footer>
    <script>
+       let burgerOpen = false;
+
+       let burgerBtn = document.getElementById('burger')
+       let menuMain = document.getElementById('menu-main')
+
+       burgerBtn.addEventListener("click" , function() {
+            if (burgerOpen) {
+                menuMain.style.right = "-100vw"
+                setTimeout(function() {
+                menuMain.style.display = "none";
+                burgerBtn.style.transform = "initial"
+                },500)
+                burgerOpen = !burgerOpen
+                return
+            }
+            menuMain.style.display = "block";
+            setTimeout(function() {
+            menuMain.style.right = 0;
+            burgerBtn.style.transform = "rotate(90deg)"
+            },100)
+            
+            burgerOpen = !burgerOpen
+       })
    </script>
 </html>
