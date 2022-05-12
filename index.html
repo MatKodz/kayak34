@@ -822,7 +822,7 @@ section > h2 {
             })
             inputVilles.innerHTML = options
        }
-
+        // appliquer un gestionnaire d'evt sur le champ de formulaire qui se déclenche à la perte du focus + appel fetch
        inputCodePostal.addEventListener("blur", function(e) {
            if(e.target.value.length == 5)
            {
