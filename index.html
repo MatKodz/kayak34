@@ -3,9 +3,612 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kayak34</title>
+    <style>
+        .my-big {
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+nav {
+  background-color: #132b3a;
+}
+nav .nav-wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #132b3a;
+}
+
+nav .nav-wrapper .menu-wrapper {
+  display: flex;
+  background-color: #132b3a;
+}
+nav .nav-wrapper .menu-wrapper ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Avenir", sans-serif;
+}
+
+nav .nav-wrapper .menu-wrapper ul li {
+  padding: 10px 30px;
+  text-transform: uppercase;
+}
+nav .nav-wrapper .menu-wrapper ul a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+nav .nav-wrapper .menu-wrapper ul a:hover {
+  color: #01f2ea;
+}
+nav .nav-wrapper .menu-wrapper ul a::before {
+  content: "";
+  position: absolute;
+  left: -5%;
+  bottom: -5px;
+  width: 0px;
+  height: 3px;
+  background-color: #01f2ea;
+  transition: all linear 0.2s;
+}
+nav .nav-wrapper .menu-wrapper ul a:hover::before {
+  width: 110%;
+}
+nav .nav-wrapper #burger {
+  display: none;
+}
+nav .nav-wrapper #burger svg {
+  fill: #ffef2a;
+  margin: 15px;
+}
+
+nav .nav-wrapper img {
+  max-width: 120px;
+  position: relative;
+  bottom: -10px;
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+}
+
+.separator {
+  background-color: #fec52d;
+  height: 10px;
+}
+
+section.infos {
+  display: flex;
+}
+section.infos .infos-niveau {
+  flex: 2 1;
+}
+section.infos .infos-details {
+  flex: 1 1;
+}
+section.infos .infos-weather {
+  flex: 0 0;
+}
+
+section.equipements .equipements-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+section.equipements .equipements-wrapper article {
+  flex: 0 0 calc(50% - 15px);
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+section.parcours .parcours-items {
+  display: grid;
+  grid-template-columns: 25% 25% auto;
+  row-gap: 5px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+section.parcours .parcours-items > article {
+  margin-top: 25px;
+}
+
+
+footer {
+  background-color: #132b3a;
+  display: grid;
+  grid-template-columns: 50% auto;
+}
+
+
+main {
+  width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+
+#app-resa {
+  background-color: rgba(19, 43, 58, 0.7);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100vw;
+  height: 100vh;
+}
+#app-resa .wrapper-resa {
+  background-color: white;
+  padding: 50px;
+  min-width: 50%;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  font-family: "Avenir", sans-serif;
+}
+header .entete-image {
+  height: 450px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+header .entete-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+header .entete-image::before {
+  content: "";
+  width: 55%;
+  height: 180%;
+  background-color: #132b3a;
+  opacity: 0.7;
+  position: absolute;
+  z-index: 10;
+  transform: skewX(20deg);
+}
+
+header .entete-infos {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+header .entete-infos .entete-titre {
+  flex: 1 1;
+}
+header .entete-infos .entete-titre h2 {
+  color: #ffef2a;
+  text-transform: uppercase;
+  margin: 20px;
+  font-weight: 500;
+}
+header .entete-infos .entete-reservation-parcours {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+header .entete-infos .entete-reservation-parcours a.btn {
+  padding: 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  width: 50%;
+  background-color: #ffef2a;
+  color: #132b3a;
+  transition: all linear 0.3s;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+}
+header .entete-infos .entete-reservation-parcours a.btn:hover {
+  background-color: #fff577;
+}
+header .entete-infos .entete-reservation-parcours a.btn-parcours {
+  background-color: white;
+  border: 1px solid #ffef2a;
+}
+
+.wrapper-resa {
+  position: relative;
+}
+.wrapper-resa .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.wrapper-resa .wrapper-dispo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrapper-resa .agences, .wrapper-resa .equipements {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #efefef;
+  margin: 0 0 10px 0;
+  flex-wrap: wrap;
+}
+.wrapper-resa .agences div, .wrapper-resa .equipements div {
+  flex: 1 1;
+}
+.wrapper-resa .agences input[type=radio], .wrapper-resa .equipements input[type=radio] {
+  display: none;
+}
+.wrapper-resa .agences input[type=radio] + label, .wrapper-resa .equipements input[type=radio] + label {
+  position: relative;
+  border: 1px solid #ffef2a;
+  border-radius: 5px;
+  padding: 20px 0px;
+  display: block;
+  margin-right: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all linear 0.3s;
+}
+.wrapper-resa .agences input[type=radio] + label:not(:last-of-type), .wrapper-resa .equipements input[type=radio] + label:not(:last-of-type) {
+  margin-right: 0;
+}
+.wrapper-resa .agences input[type=radio] + label:hover, .wrapper-resa .equipements input[type=radio] + label:hover {
+  background-color: #ffef2a;
+}
+.wrapper-resa .agences input[type=radio] + label .badge, .wrapper-resa .equipements input[type=radio] + label .badge {
+  font-size: 12px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  right: -9px;
+  top: -10px;
+}
+.wrapper-resa .agences input[type=radio]:checked + label, .wrapper-resa .equipements input[type=radio]:checked + label {
+  background-color: #fff577;
+}
+.wrapper-resa .agences input[type=radio]:disabled + label, .wrapper-resa .equipements input[type=radio]:disabled + label {
+  color: #d6d6d6;
+  border-color: #d6d6d6;
+}
+.wrapper-resa .agences input[type=radio]:disabled + label .media img, .wrapper-resa .equipements input[type=radio]:disabled + label .media img {
+  filter: grayscale(95%);
+  opacity: 0.5;
+}
+.wrapper-resa .agences .media, .wrapper-resa .equipements .media {
+  text-align: center;
+}
+.wrapper-resa .agences .media img, .wrapper-resa .equipements .media img {
+  max-width: 180px;
+  max-height: 90px;
+  padding: 10px 0;
+}
+.wrapper-resa .equipements {
+  min-height: 180px;
+}
+.wrapper-resa .equipements div {
+  transition: all linear 0.2s;
+}
+.wrapper-resa .equipements input[type=radio] + label {
+  border: 1px solid #132b3a;
+  color: #132b3a;
+}
+.wrapper-resa .equipements input[type=radio] + label:hover {
+  background-color: #79b0d3;
+}
+.wrapper-resa .equipements input[type=radio]:checked + label {
+  background-color: #132b3a;
+  color: white;
+}
+.wrapper-resa .btn-booking {
+  padding: 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  width: 50%;
+  background-color: #ffef2a;
+  color: #132b3a;
+  transition: all linear 0.3s;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  width: 100%;
+}
+.wrapper-resa .btn-booking:hover {
+  background-color: #fff577;
+}
+
+section.infos .infos-niveau {
+  background-image: url(../images/standup-paddle-group.jpeg);
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(19, 43, 58, 0.6666666667);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px;
+}
+section.infos .infos-niveau h3 {
+  text-shadow: #303030 1px 1px 7px;
+  color: #ffef2a;
+  padding: 10px 0 10px 30px;
+  margin: 0;
+  text-transform: uppercase;
+}
+section.infos .infos-niveau h3:nth-of-type(2n) {
+  color: #fec52d;
+}
+section.infos .infos-details {
+  display: flex;
+}
+section.infos .infos-details ul {
+  font-family: "Avenir", sans-serif;
+  padding: 0 20px;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+section.infos .infos-details ul li {
+  padding: 15px 25px;
+  margin: 15px 0;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dotted #fec52d;
+}
+section.infos .infos-details ul li img {
+  max-width: 64px;
+}
+section.infos .infos-details ul li:last-of-type {
+  border-bottom: 0;
+  border-top: 2px dotted #fec52d;
+}
+section.infos .infos-details ul li.infos-ouverture {
+  background: linear-gradient(165deg, #ffef2a, #fec52d);
+  border-radius: 8px;
+}
+section.infos .infos-details ul li.infos-ouverture span {
+  display: block;
+}
+section.infos .infos-weather {
+  margin: 0 15px;
+  padding: 15px 15px 15px 0;
+  box-shadow: 0px 0px 10px 3px #bcbcbc;
+  background-color: #f3ffff;
+  color: #132b3a;
+  border: 1px solid #01f2ea;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+section.infos .infos-weather span:first-of-type {
+  font-family: "Arial Rounded", sans-serif;
+  font-size: 50px;
+  display: block;
+}
+section.infos .infos-weather span:last-of-type {
+  color: #565656;
+  font-style: italic;
+}
+section.infos .infos-weather [class^=weather] {
+  flex: 1 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section.infos .infos-weather [class^=weather] img {
+  max-width: 120px;
+}
+section.infos .infos-weather .weather-forecast {
+  border-bottom: 1px dotted #01f2ea;
+}
+
+section.equipements .equipements-wrapper article:not(:last-of-type) {
+  box-shadow: 0px 0px 10px 3px #bcbcbc;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #a3a3a3;
+}
+section.equipements .equipements-wrapper article:not(:last-of-type) img {
+  max-width: 180px;
+}
+section.equipements .equipements-wrapper article:not(:last-of-type) .icon {
+  background: radial-gradient(#ffef2a 20%, #fec52d 70%, white 71%);
+  background-size: 450px 279px;
+  background-repeat: no-repeat;
+  background-position: -283px;
+  /*
+      background: linear-gradient(181deg, yellow 25%, orange);
+      clip-path: ellipse(100% 70% at -5% 50%);
+      */
+}
+section.equipements .equipements-wrapper article:not(:last-of-type):nth-of-type(2n+1) {
+  margin-right: 15px;
+}
+
+
+section.parcours .parcours-items > article {
+  border-top: 5px solid #ffef2a;
+  background-color: #efefef;
+  position: relative;
+}
+section.parcours .parcours-items > article img {
+  max-height: 140px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+section.parcours .parcours-items > article .parcours-detail {
+  padding: 15px;
+}
+section.parcours .parcours-items > article .parcours-detail a {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  width: 50%;
+  background-color: #ffef2a;
+  color: #132b3a;
+  transition: all linear 0.3s;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+section.parcours .parcours-items > article .parcours-detail a:hover {
+  background-color: #fff577;
+}
+section.parcours .parcours-items .reportages {
+  position: relative;
+}
+
+section.parcours .parcours-items .reportages .icon-camera {
+  position: absolute;
+  left: 40%;
+  top: 25%;
+  background-color: #fec52d;
+  padding: 10px;
+  opacity: 0.8;
+}
+section.parcours .parcours-items .reportages h3 {
+  background-color: #fec52d;
+  font-size: 30px;
+  text-align: center;
+  color: #132b3a;
+  margin-top: -5px;
+}
+
+footer .col {
+  padding: 15px;
+  margin-left: calc((100vw - 1200px) / 2);
+}
+footer .col > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+footer .col > div > * {
+  flex: 1 1;
+}
+footer .col img {
+  max-width: 160px;
+}
+
+footer .icon-location {
+  fill: #fec52d;
+  width: 70px;
+  vertical-align: middle;
+}
+footer .icon-location + span {
+  color: #fec52d;
+  font-family: "Avenir", sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+footer ul {
+  list-style: none;
+  margin: 20px 15px;
+  padding: 0;
+  font-family: "Avenir", sans-serif;
+}
+footer ul li {
+  color: white;
+  margin: 0;
+}
+footer .footer-illustration {
+  -webkit-clip-path: polygon(0 100%, 30% 0%, 100% 0, 100% 100%);
+          clip-path: polygon(0 100%, 30% 0%, 100% 0, 100% 100%);
+}
+
+
+h1 {
+  font-size: 80px;
+  font-family: "Avenir", sans-serif;
+  padding: 10px 0;
+  margin: 0;
+}
+
+
+h2 {
+  font-size: 70px;
+  font-family: "Avenir", sans-serif;
+  padding: 10px 0;
+  margin: 0;
+}
+
+
+h3 {
+  font-size: 50px;
+  font-family: "Avenir", sans-serif;
+  padding: 10px 0;
+  margin: 0;
+}
+
+
+h4 {
+  font-size: 30px;
+  font-family: "Avenir", sans-serif;
+  padding: 10px 0;
+  margin: 0;
+}
+
+
+h5 {
+  font-size: 24px;
+  font-family: "Avenir", sans-serif;
+  padding: 10px 0;
+  margin: 0;
+}
+
+
+section > h2 {
+  color: #132b3a;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+    </style>
 </head>
 <body>
     <nav>
@@ -191,12 +794,60 @@
             <img src="images/balade-paddle-afterwork-degustation-de-muscat-tikicenter-1-1160x564.jpg" alt="">
         </div>
    </footer>
-   <script src="disponibilite/dist/src.a2b27638.js"></script>
    <script>
-       let resaApp = document.getElementById("app-resa");
-       resaApp.style.display = "none";
-       document.getElementById("resa").addEventListener('click', function () {
-           resaApp.style.display = "flex";
+       let burgerOpen = false;
+
+       let burgerBtn = document.getElementById('burger')
+       let menuMain = document.getElementById('menu-main')
+
+       burgerBtn.addEventListener("click" , function() {
+            if (burgerOpen) {
+                menuMain.style.right = "-100vw"
+                setTimeout(function() {
+                menuMain.style.display = "none";
+                burgerBtn.style.transform = "initial"
+                },500)
+                burgerOpen = !burgerOpen
+                return
+            }
+            menuMain.style.display = "block";
+            setTimeout(function() {
+            menuMain.style.right = 0;
+            burgerBtn.style.transform = "rotate(90deg)"
+            },100)
+            
+            burgerOpen = !burgerOpen
+       })
+       
+       // appel d'une API asynchrone
+       let inputCodePostal = document.getElementById("cp");
+       let inputVilles = document.getElementById("ville");
+       // fonction permettant d'afficher la liste des communes dans une liste déroulante
+       function towns(villes) {
+           if(!villes)
+           return alert('no response')
+           let options = '<option value="-1"> Choisir un lieu </option>';
+           villes.forEach((elt,i) => {
+              let selected = (villes.length == 1) ? "selected" : "";
+               options += `<option value="${elt.nomCommune}" ${selected}>${elt.nomCommune}</option>`
+            })
+            inputVilles.innerHTML = options
+       }
+        // appliquer un gestionnaire d'evt sur le champ de formulaire qui se déclenche à la perte du focus + appel fetch
+       inputCodePostal.addEventListener("blur", function(e) {
+           if(e.target.value.length == 5)
+           {
+            let url = "https://apicarto.ign.fr/api/codes-postaux/communes/"
+               fetch(url + e.target.value)
+               .then(response => { 
+                   console.log(response.status)
+                   if(response.status !== 200) 
+                   return 
+                   else return response.json()
+                })
+               .then(data => towns(data) )
+           }
+           else e.target.style.border = "2px solid red"
        })
 
        let burgerOpen = false;
