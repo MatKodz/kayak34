@@ -11,13 +11,15 @@
     <nav>
         <div class="nav-wrapper">        
             <img src="logo.png" alt="logo kayak34">
-            <div class="menu-wrapper">
+            <div class="menu-wrapper" id="menu-main">
                 <ul class="menu">
                     <li><a href="">Réserver</a></li>
                     <li><a href="">Nous trouver</a></li>
                     <li><a href="">Contactez nous</a></li>
                 </ul>
-                <div class="phone"></div>
+                <div class="phone">
+                    <img src="icons/phone.png" alt="">
+                </div>
                 <ul class="menu-lang">
                     <li><a href="/fr">FR</a></li>
                     <li><a href="/en">EN</a></li>
@@ -139,46 +141,55 @@
              </div>
            </div>
        </section>
+       <section>
+           <form action="">
+               <label>Email : </label><input type="mail">
+               <label>Code postal : </label><input type="number" id="cp">
+               <select name="" id="ville">
+                   <option value="">Choisir</option>
+               </select>
+           </form>
+       </section>
    </main>
    <footer>
-       <div class="col">
-           <div class="row location">
-               <div>
-                   <img src="icons/location.svg" alt="" class="icon-location">
-                <span>Palavas</span>
-            </div>
-            <div>
-              <img src="icons/location.svg" alt="" class="icon-location">
-            <span>Carnon</span>  
-            </div>
-            </div>
-        <div class="row">
-            <div class="newsletter">
-                <input type="text" name="" id="">
-                <input type="button" value="S'inscrire">
-               </div>
-               <div>
-                <img src="images/logo_ffk.png" alt="logo ffk">
-               </div>
-
-        </div>
-           
-        <div class="row">
+        <div class="footer-infos">
+            <div class="row location">
+                <div>
+                    <img src="icons/location.svg" alt="" class="icon-location">
+                 <span>Palavas</span>
+             </div>
+             <div>
+               <img src="icons/location.svg" alt="" class="icon-location">
+             <span>Carnon</span>  
+             </div>
+             </div>
+         <div class="row">
+             <div class="newsletter">
+                 <input type="text" name="" id="">
+                 <input type="button" value="S'inscrire">
+                </div>
+                <div>
+                 <img src="images/logo_ffk.png" alt="logo ffk">
+                </div>
+ 
+         </div>
+            
+         <div class="row">
+             <ul>
+                <li>Contact</li>
+                <li>Mentions légales</li>
+                <li>Politique de confidentialité</li>
+            </ul>
             <ul>
-               <li>Contact</li>
-               <li>Mentions légales</li>
-               <li>Politique de confidentialité</li>
-           </ul>
-           <ul>
-            <li>Questions / réponses</li>
-            <li>La société</li>
-            <li>Conseils et guides</li>
-        </ul>
+             <li>Questions / réponses</li>
+             <li>La société</li>
+             <li>Conseils et guides</li>
+         </ul>
+         </div>
         </div>
-       </div>
-       <div class="footer-illustration">
-           <img src="images/balade-paddle-afterwork-degustation-de-muscat-tikicenter-1-1160x564.jpg" alt="">
-       </div>
+        <div class="footer-illustration">
+            <img src="images/balade-paddle-afterwork-degustation-de-muscat-tikicenter-1-1160x564.jpg" alt="">
+        </div>
    </footer>
    <script src="disponibilite/dist/src.a2b27638.js"></script>
    <script>
@@ -187,5 +198,62 @@
        document.getElementById("resa").addEventListener('click', function () {
            resaApp.style.display = "flex";
        })
+
+       let burgerOpen = false;
+
+       let burgerBtn = document.getElementById('burger')
+       let menuMain = document.getElementById('menu-main')
+
+       burgerBtn.addEventListener("click" , function() {
+            if (burgerOpen) {
+                menuMain.style.right = "-100vw"
+                setTimeout(function() {
+                menuMain.style.display = "none";
+                burgerBtn.style.transform = "initial"
+                },500)
+                burgerOpen = !burgerOpen
+                return
+            }
+            menuMain.style.display = "block";
+            setTimeout(function() {
+            menuMain.style.right = 0;
+            burgerBtn.style.transform = "rotate(90deg)"
+            },100)
+            
+            burgerOpen = !burgerOpen
+       })
+
+       let inputCodePostal = document.getElementById("cp");
+       let inputVilles = document.getElementById("ville");
+
+       function towns(villes) {
+           if(!villes)
+           return alert('no response')
+           let options = '<option value="-1"> Choisir un lieu </option>';
+           villes.forEach((elt,i) => {
+              let selected = (villes.length == 1) ? "selected" : "";
+               options += `<option value="${elt.nomCommune}" ${selected}>${elt.nomCommune}</option>`
+            })
+            inputVilles.innerHTML = options
+       }
+
+       inputCodePostal.addEventListener("blur", function(e) {
+           if(e.target.value.length == 5)
+           {
+            let url = "https://apicarto.ign.fr/api/codes-postaux/communes/"
+               fetch(url + e.target.value)
+               .then(response => { 
+                   console.log(response.status)
+                   if(response.status !== 200) 
+                   return 
+                   else return response.json()
+                })
+               .then(data => towns(data) )
+           }
+           else e.target.style.border = "2px solid red"
+       })
+
+
+
    </script>
 </html>

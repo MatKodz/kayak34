@@ -1,0 +1,180 @@
+nav {
+    background-color: $darkBlue;
+    .nav-wrapper {
+        max-width: $screen-desktop;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include screen-mobile {
+            width: 100%;
+        }
+        .menu-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: $darkBlue;
+            ul {
+                list-style: none;
+                padding : 0;
+                display: flex;
+                justify-content: space-around;
+                font-family: $font-family;
+                @include screen-mobile {
+                    display: block;
+                }
+               li {
+                padding: 10px 30px;
+                text-transform: uppercase;
+               } 
+               a {
+                color: white;
+                text-decoration: none;
+                position: relative;
+                &:hover {
+                    color: $turquoise;
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: -5%;
+                    bottom: -5px;
+                    width: 0px;
+                    height: 3px;
+                    background-color: $turquoise;
+                    transition: all linear 0.2s;
+                }
+                &:hover::before {
+                    width: 110%;
+                }
+            }
+            }
+            .phone {
+                padding: 0 16px;
+            }
+            @include screen-mobile {
+                position: absolute;
+                top: 0;
+                right: -100vw;
+                display: none;
+                z-index: 50;
+                width: 80%;
+                height: 100%;
+                transition: all linear 0.3s;
+
+            }
+        }
+        #burger {
+            display: none;
+            transition: all 0.2s ease-in;
+            svg{
+                fill: $yellow;
+                margin: 15px;
+            }
+            @include screen-mobile {
+                display: block;
+                position: relative;
+                z-index: 60;
+            }
+        } 
+        > img {
+            max-width: 120px;;
+            position: relative;
+            bottom: -10px;
+        }
+    }
+}
+
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+.separator {
+    background-color: $orange;
+    height: 10px;;
+}
+
+section{
+   &.infos {
+       display: flex;
+       .infos-niveau {
+           flex : 2 1;
+       }
+       .infos-details {
+           flex: 1 1;
+       }
+       .infos-weather {
+           flex: 0 0;
+       }
+       @include screen-mobile {
+           flex-flow: column;
+       }
+   }
+   &.equipements {
+       .equipements-wrapper {
+           display: flex;
+           flex-flow: row wrap;
+           align-items: flex-start;
+           article {
+               flex: 0 0 calc(50% - 15px);
+               margin-bottom: 15px;
+               box-sizing: border-box;
+               @include screen-mobile {
+                flex: initial;
+            }
+           }
+       }
+   }
+   &.parcours {
+       .parcours-items {
+        display: grid;
+        grid-template-columns: 25% 25% auto;
+        row-gap: 5px;
+        column-gap: 10px;
+        > article {
+            margin-top: 25px;
+        }
+        @include screen-mobile {
+            display: block;
+        }
+       }
+   }
+}
+
+footer {
+    background-color: $darkBlue;
+    display: grid;
+    grid-template-columns: 50% auto;
+    @include screen-mobile {
+        display: block;
+    }
+}
+
+main {
+    max-width: $screen-desktop;
+    margin: 0 auto;
+    box-sizing: border-box;
+    @include screen-mobile {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+#app-resa {
+    background-color: rgba($darkBlue, 0.7);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100vw;
+    height: 100vh;
+    .wrapper-resa {
+        background-color: white;
+        padding: 50px;
+        min-width: 50%;
+    }
+
+}

@@ -1,0 +1,18 @@
+@each $h in $hx {
+    $i : index($hx,$h);
+    h#{$i} {
+        font-size: $h;
+        font-family: $font-family;
+        padding: 10px 0;
+        margin: 0;
+        @include screen-mobile {
+            font-size: calc($h / 2);
+        }
+    }
+}
+
+section > h2 {
+    color: $darkBlue;
+    font-weight: 300;
+    text-transform: uppercase;
+}
