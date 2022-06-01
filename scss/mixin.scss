@@ -34,6 +34,14 @@
     }
 }
 
+@mixin screen-tablet {
+    @media screen and (max-width: 768px) {
+        & {
+            @content;
+        }
+    }
+}
+
 .my-big {
     margin: {
         top: 70px;

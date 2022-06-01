@@ -5,8 +5,11 @@
         font-family: $font-family;
         padding: 10px 0;
         margin: 0;
+        @include screen-tablet {
+            font-size: round( calc($h/1.4));
+        }
         @include screen-mobile {
-            font-size: calc($h / 2);
+            font-size: calc($h / 1.8);
         }
     }
 }
